@@ -21,6 +21,7 @@ export default defineConfig({
   plugins: [
     react(),
     createHtmlPlugin({
+      
       inject: {
         data: {
           title: CONFIG.appName,

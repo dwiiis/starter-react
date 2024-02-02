@@ -2,14 +2,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { webRoutes } from '@/routes/web';
 import { Alert, Avatar, Button, Dropdown, Input } from 'antd';
 import { ProLayout, ProLayoutProps } from '@ant-design/pro-components';
-import Icon, {
-  LogoutOutlined,
-  GithubFilled,
-  InfoCircleFilled,
-  SearchOutlined,
-  PlusCircleFilled,
-  QuestionCircleFilled,
-} from '@ant-design/icons';
+import Icon, { LogoutOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '@/store/slices/adminSlice';
 import { memo, useEffect, useState } from 'react';
@@ -64,17 +57,9 @@ const Layout = () => {
   };
 
   const avatar = (
-    <div
-      className={
-        isDarkMode
-          ? 'border-r-2 border-gray-600 pr-2'
-          : 'border-r-2 border-gray-200 pr-2'
-      }
-    >
-      <Button type="primary" shape="circle">
-        AS
-      </Button>
-    </div>
+    <Button type="primary" shape="circle">
+      AS
+    </Button>
   );
   const iconLogout = isDarkMode ? (
     <Button
@@ -90,23 +75,6 @@ const Layout = () => {
       icon={<TbLogout />}
       className="bg-blue-100 text-blue-600"
     />
-  );
-  const switchDark = (
-    <>
-      <div className="flex items-center w-full pr-6 pl-6">
-        <p className="text-sm w-5/6">
-          {isDarkMode ? 'Dark Mode' : 'Light Mode'}
-        </p>
-
-        <DarkModeSwitch
-          checked={isDarkMode}
-          onChange={toggleDarkModeBtn}
-          sunColor="#959595"
-          moonColor="#959595"
-          size={20}
-        />
-      </div>
-    </>
   );
 
   return (
@@ -132,6 +100,19 @@ const Layout = () => {
             {dom}
           </a>
         )}
+        actionsRender={(props) => {
+          if (props.isMobile) return [];
+          if (typeof window === 'undefined') return [];
+          return [
+            <DarkModeSwitch
+              checked={isDarkMode}
+              onChange={toggleDarkModeBtn}
+              sunColor="#ffe100"
+              moonColor="#504f8f"
+              size={34}
+            />,
+          ];
+        }}
         avatarProps={{
           icon: <Icon component={RiShieldUserFill} />,
           className: 'bg-primary bg-opacity-20 text-primary text-opacity-90',
@@ -158,10 +139,6 @@ const Layout = () => {
               </Dropdown>
             );
           },
-        }}
-        menuFooterRender={(props) => {
-          if (props?.collapsed) return undefined;
-          return <div>{switchDark}</div>;
         }}
       >
         <Outlet />
