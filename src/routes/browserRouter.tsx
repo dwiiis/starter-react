@@ -42,9 +42,7 @@ export const browserRouter = createBrowserRouter([
   // protected routes
   {
     element: (
-      <RequireAuth>
         <Layout />
-      </RequireAuth>
     ),
     errorElement: errorElement,
     children: [

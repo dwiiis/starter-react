@@ -5,5 +5,5 @@ export const webRoutes = {
   dashboard: '/dashboard',
   users: '/users',
   about: '/about',
-  demo: '/demo-page'
+  demo: '/test'
 };

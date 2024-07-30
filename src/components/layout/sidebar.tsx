@@ -23,7 +23,7 @@ export const sidebar = [
   {
     path: webRoutes.demo,
     key: webRoutes.demo,
-    name: 'Demo Page',
+    name: 'Test',
     icon: <InfoCircleOutlined />,
   },
 ];
